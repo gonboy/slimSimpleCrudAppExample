@@ -1,0 +1,27 @@
+<!doctype html>
+<head>
+    {# base-tagi takaa sen, että linkit resursseihin toimivat vaikka sivuston urlissa olisikin virtuaalisia alikansioita.
+    siteUrl() on Slimin Twig-extension helper-funktio, joka palauttaa sovelluksen absoluuttisen osoitteen. Näin ei tarvitse
+    kikkoja kuiten Java EE:n request.getContextPath() :^) #}
+    <base href="{{ siteUrl("/") }}">
+    <meta charset="utf-8">
+    <title>Bloggr</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{{ siteUrl('/') }}">Bloggr</a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{{ siteUrl('/admin/') }}">Admin login</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>

@@ -1,0 +1,17 @@
+{
+  "name": "joppuyo/slimSimpleCrudAppExample",
+  "description": "An example of a simple blog application using Slim Framework",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Johannes Siipola",
+      "email": "johannes.siipola@gmail.com"
+    }
+  ],
+  "require": {
+    "slim/slim": "2.5.0",
+    "slim/views": "0.1.3",
+    "twig/twig": "v1.18.0"
+  }
+}

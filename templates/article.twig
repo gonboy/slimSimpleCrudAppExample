@@ -1,0 +1,6 @@
+{% extends 'base.twig' %}
+{% block content %}
+    <h1>{{ article.title }}</h1>
+    <p><em>Published by admin at {{ article.date }} </em></p>
+    <p style="white-space: pre-wrap;">{{ article.content }}</p>
+{% endblock %}
