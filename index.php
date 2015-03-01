@@ -58,7 +58,7 @@ $app->post("/admin/new/", function() use ($app) {
   $date = $app->request->post("date");
   $content = $app->request->post("content");
   $app->db->insertNewArticle($title, $date, $content);
-  // Lisätään flash-message seuraavaan sivukyselyyn
+  // Add flash message to next page request
   $app->flash("info", "Article has been successfully published");
   $app->redirect($app->request()->getRootUri() . "/admin/");
 });
