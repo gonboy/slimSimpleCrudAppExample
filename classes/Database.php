@@ -3,9 +3,8 @@
 Class Database {
 
   private $pdo;
-
-  function __construct($address, $port, $name, $user, $password)
-  {
+  
+  function __construct($address, $port, $name, $user, $password) {
     $this->pdo = new PDO("mysql:host=$address;port$=$port;dbname=$name;charset=utf8", $user, $password);
     $this->pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
     $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
