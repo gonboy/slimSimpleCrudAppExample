@@ -1,27 +1,28 @@
 <!doctype html>
-<head>
-    {# base-tagi takaa sen, että linkit resursseihin toimivat vaikka sivuston urlissa olisikin virtuaalisia alikansioita.
-    siteUrl() on Slimin Twig-extension helper-funktio, joka palauttaa sovelluksen absoluuttisen osoitteen. Näin ei tarvitse
-    kikkoja kuiten Java EE:n request.getContextPath() :^) #}
-    <base href="{{ siteUrl("/") }}">
-    <meta charset="utf-8">
-    <title>Bloggr</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-</head>
-
-<body>
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="{{ siteUrl('/') }}">Bloggr</a>
+<html lang="en">
+    <head>
+        {# base-tag ensures that links to resources work even when there are virtual sub-folders in the application url.
+        siteUrl() is a built in Twig helper function that returns the absolute url for the application. This means you
+        don't need hacks like Java EE:s request.getContextPath() :^) #}
+        <base href="{{ siteUrl("/") }}">
+        <meta charset="utf-8">
+        <title>Bloggr</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+    </head>
+    <body>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="{{ siteUrl('/') }}">Bloggr</a>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{{ siteUrl('/admin/') }}">Admin login</a></li>
+                </ul>
             </div>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="{{ siteUrl('/admin/') }}">Admin login</a></li>
-            </ul>
+        </nav>
+        <div class="container">
+            {% block content %}
+            {% endblock %}
         </div>
-    </nav>
-    <div class="container">
-        {% block content %}
-        {% endblock %}
-    </div>
-</body>
+    </body>
+</html>

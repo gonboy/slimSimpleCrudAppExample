@@ -1,34 +1,36 @@
 <?php
 
-// Ladataan kaikki kolmannen osapuolen kirjastot
+// Load all third party libraries
 require "vendor/autoload.php";
+
+// Load other required project files
 require "config.php";
 require "classes/Database.php";
 
-// Käynnistetään sessio että flash-messaget toimii
+// Start session so flash messages work
 session_start();
 
-// Määritellään applikaatio
+// Configure application
 $app = new \Slim\Slim;
 
-// Määritellään näkymä käyttämään Twig-templaatteja
+// Configure view to use Twig template engine
 $app->config("view", New \Slim\Views\Twig());
 
-// Rekisteröidään Twigin helper-funktiot
+// Register Twig helper functions
 $view = $app->view();
 $view->parserExtensions = [
   new \Slim\Views\TwigExtension(),
 ];
 
-//Luodaan tietokantaluokasta singleton
+// Make database class a singleton
 $app->container->singleton('db', function () {
   return new Database(DB_HOST, DB_PORT, DB_NAME, DB_USERNAME, DB_PASSWORD);
 });
 
-// Määritellään sivuston reititys
+// Configure application routing
 $app->get("/", function() use ($app) {
   $articles = $app->db->getArticles();
-  //Tehdään artikkelien tekstistä tiivisteet
+  // Truncate article summaries
   foreach ($articles as &$article) {
     $article["content"] = substr($article["content"], 0, 600) . "...";
   }
@@ -81,5 +83,5 @@ $app->post("/admin/edit/:articleId", function($articleId) use ($app) {
   }
 });
 
-// Käynnistetään applikaatio
+// Start application
 $app->run();
